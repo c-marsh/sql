@@ -1,18 +1,24 @@
+"""Copy into this file to execute with same file name"""
+
+
 import os
-# import date time
 import datetime
 import pymysql
 
-# get username
+# Get the username from the Cloud9 workspace
+# (modify this variable if running on another environment)
 username = os.getenv('C9_USER')
 
-# connect
-connection = pymysql.connect(host='localhost', user=username,
-                             password="", db="Chinook")
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
 
 try:
     with connection.cursor() as cursor:
-        cursor.execute("Update Friends SET age = %s WHERE name = %s;", (59, 'ainsley'))
+        rows = cursor.executemany("DELETE FROM Friends WHERE name = %s;",
+                                  ['bob', 'charles'])
         connection.commit()
 finally:
     connection.close()

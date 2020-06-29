@@ -1,0 +1,18 @@
+import os
+# import date time
+import datetime
+import pymysql
+
+# get username
+username = os.getenv('C9_USER')
+
+# connect
+connection = pymysql.connect(host='localhost', user=username,
+                             password="", db="Chinook")
+
+try:
+    with connection.cursor() as cursor:
+        cursor.execute("Update Friends SET age = 22 WHERE name = 'Bob';")
+        connection.commit()
+finally:
+    connection.close()

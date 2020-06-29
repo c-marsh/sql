@@ -17,4 +17,4 @@ tee file.txt
 notee
 
 /* Execute queries from an SQL file called `test.sql` */
-source test.sql
+source sql-setup/3/test.sql
